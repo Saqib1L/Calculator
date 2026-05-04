@@ -43,6 +43,12 @@ function handleNumber(value) {
 
   currentInput+=value;
   result.textContent = currentInput;
+
+  if(operator){
+    result.textContent = `${firstValue} ${operator} ${currentInput}`;
+  } else {
+    result.textContent = currentInput;
+  }
 }
 
 //implement the handleOperator function
@@ -55,6 +61,13 @@ function handleOperation(value) {
   currentInput = '';
   expression.textContent = `${firstValue} ${operator}`;
   resultShown = false;
+}
+
+//implement the handleEquals function
+function handleEquals() {
+  if (firstValue === '' || operator === '' || currentInput === '') return;
+
+
 }
 
 
