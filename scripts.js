@@ -59,7 +59,7 @@ function handleOperation(value) {
   firstValue = currentInput || result.textContent;
   operator = value;
   currentInput = '';
-  expression.textContent = `${firstValue} ${operator}`;
+  result.textContent = `${firstValue}${operator}`;
   resultShown = false;
 }
 
@@ -67,7 +67,20 @@ function handleOperation(value) {
 function handleEquals() {
   if (firstValue === '' || operator === '' || currentInput === '') return;
 
+  const a = parseFloat(firstValue);
+  const b = parseFloat(currentInput);
 
+  if (operator === '+') calc = a + b;
+  if (operator === '-') calc = a - b;
+  if (operator === '*') calc = a * b;
+  if (operator === '/') calc = b !== 0 ? a/b : 'Error';
+
+  expression.textContent = `${firstValue}${operator}${currentInput}`;
+  result.textContent = calc;
+  currentInput = String(calc);
+  firstValue = '';
+  operator = '';
+  resultShown = true;
 }
 
 
