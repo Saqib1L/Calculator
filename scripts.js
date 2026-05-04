@@ -83,6 +83,16 @@ function handleEquals() {
   resultShown = true;
 }
 
+//implement the handleClear function
+function handleCLear(){
+  currentInput = '';
+  operator = '';
+  firstValue = '';
+  resultShown = false;
+  expression.textContent = '';
+  result.textContent = '0';
+}
+
 
 
 
