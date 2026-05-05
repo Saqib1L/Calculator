@@ -24,12 +24,12 @@ body {
   --pad-top:  calc(var(--calc-size) * 0.1);
   --pad-bot:  calc(var(--calc-size) * 0.075);
   --radius:   calc(var(--calc-size) * 0.13);
-  --font-result:     calc(var(--calc-size) * 0.195);
   --font-result-lg:  calc(var(--calc-size) * 0.13);
-  --font-expr:       calc(var(--calc-size) * 0.052);
   --font-btn:        calc(var(--calc-size) * 0.075);
   --font-btn-op:     calc(var(--calc-size) * 0.082);
   --font-btn-fn:     calc(var(--calc-size) * 0.065);
+  --font-result:    calc(var(--calc-size) * 0.16);
+  --font-expr:      calc(var(--calc-size) * 0.068);
 
   width: var(--calc-size);
   border: 1.5px solid #262628;
@@ -53,7 +53,7 @@ body {
 #expression {
   text-align: right;
   font-size: var(--font-expr);
-  color: rgba(100, 160, 255, 0.5);
+  color: rgba(180, 180, 180, 0.65);
   font-weight: 300;
   letter-spacing: 0.5px;
   min-height: 1.5em;
