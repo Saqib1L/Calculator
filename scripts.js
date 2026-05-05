@@ -38,14 +38,21 @@ function handleAction(action, value) {
 
 //implement the handleNumber function
 function handleNumber(value) {
-  if (resultShown) {currentInput = ''; resultShown = false; expression .textContent='';} 
+  if (resultShown) {
+    currentInput = ''; 
+    resultShown = false; 
+    expressionStr = '';
+    expression.textContent = '';
+  } 
+
   if (value === '.' && currentInput.includes('.')) return;
+  if (currentInput === '0' && value !== '.') currentInput = ''; 
 
   currentInput+=value;
   result.textContent = currentInput;
 
   if(operator){
-    result.textContent = `${firstValue} ${operator} ${currentInput}`;
+    result.textContent = `${firstValue}${operator}${currentInput}`;
   } else {
     result.textContent = currentInput;
   }
@@ -65,15 +72,28 @@ function handleOperation(value) {
 
 //implement the handleEquals function
 function handleEquals() {
+
+  if (operator === '' && currentInput.includes('%')){
+    const calc = parseFloat(currentInput)/100;
+    expression.textContent = `${currentInput}`;
+    result.textContent = calc;
+    currentInput = String(calc);
+    resultShown = true;
+    return;
+  }
+
   if (firstValue === '' || operator === '' || currentInput === '') return;
 
   const a = parseFloat(firstValue);
-  const b = parseFloat(currentInput);
+  const isPercent = currentInput.includes('%')
+  const b = isPercent ? parseFloat(currentInput) / 100 : parseFloat(currentInput);
 
+  let calc;
   if (operator === '+') calc = a + b;
   if (operator === '-') calc = a - b;
   if (operator === '*') calc = a * b;
   if (operator === '/') calc = b !== 0 ? a/b : 'Error';
+  
 
   expression.textContent = `${firstValue}${operator}${currentInput}`;
   result.textContent = calc;
@@ -84,7 +104,7 @@ function handleEquals() {
 }
 
 //implement the handleClear function
-function handleCLear(){
+function handleClear(){
   currentInput = '';
   operator = '';
   firstValue = '';
@@ -92,6 +112,28 @@ function handleCLear(){
   expression.textContent = '';
   result.textContent = '0';
 }
+
+//implement the handleNegate function
+function handleNegate() {
+  if(!currentInput) return;
+  currentInput = String(parseFloat(currentInput) * -1);
+  result.textContent = currentInput;
+}
+
+//implement the handleMod function
+
+function handleMod() {
+  if(!currentInput || currentInput.includes('%')) return;
+  currentInput += '%';
+
+  if (operator) {
+    result.textContent = `${firstValue}${operator}${currentInput}`;
+  } else {
+    result.textContent = currentInput;
+  }
+}
+
+
 
 
 
